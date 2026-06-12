@@ -2,6 +2,6 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  base: '/SM_dot/',
+  base: '/dot_SM/',
   plugins: [react()],
 });
