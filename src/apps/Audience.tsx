@@ -250,17 +250,26 @@ export default function Audience({ embedded = false }: { embedded?: boolean }) {
       {toastNode}
 
       {/* ── 헤더 (최소화) ─────────────────────────────────── */}
-      <header className="aud-header">
-        <span className="eyebrow">TOUCH THE K-POP · {GROUP_NAME}</span>
+      <header className="aud-header" role="banner">
+        <div>
+          <span className="eyebrow">TOUCH THE K-POP · {GROUP_NAME}</span>
+          <p className="aud-header__title">Live tactile cues for music, movement, and atmosphere.</p>
+        </div>
         <div className="aud-header__right">
           {beat.on && <span className="beat-ind" aria-label={`비트 ${beat.bpm}BPM`}>♪ {beat.bpm}</span>}
           {deviceStatus === 'connected' && (
-            <span className="ble-pill is-on">● BLE</span>
+            <span className="ble-pill is-on">● Connected</span>
           )}
-          {deviceStatus !== 'connected' && deviceStatus !== 'offline' && (
-            <span className="ble-pill is-sync">◎ {deviceStatus === 'syncing' ? '동기화' : '지연'}</span>
+          {deviceStatus === 'syncing' && (
+            <span className="ble-pill is-sync">◎ Syncing</span>
           )}
-          <button type="button" className="btn btn--ghost btn--sm" onClick={() => setSettingsOpen(true)} aria-label="설정">⚙</button>
+          {deviceStatus === 'delayed' && (
+            <span className="ble-pill is-sync">◎ Delayed</span>
+          )}
+          {deviceStatus === 'offline' && (
+            <span className="ble-pill">◎ Offline</span>
+          )}
+          <button type="button" className="btn btn--ghost btn--sm" onClick={() => setSettingsOpen(true)} aria-label="설정 열기">⚙</button>
         </div>
       </header>
 

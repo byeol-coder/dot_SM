@@ -253,6 +253,24 @@ export default function Operator({ embedded = false }: { embedded?: boolean }) {
       </header>
       {rehearsal && <div className="rehearsal-mark" aria-hidden="true">REHEARSAL</div>}
 
+      <section className="op-summary" aria-label="Operator status summary">
+        <div className="op-summary__card">
+          <span className="eyebrow">STATUS</span>
+          <strong>{live ? 'LIVE' : 'STANDBY'}</strong>
+          <p className="dim">{live ? 'Audience view is live and receiving cues.' : 'Prepare cues and start the show.'}</p>
+        </div>
+        <div className="op-summary__card">
+          <span className="eyebrow">CURRENT SONG</span>
+          <strong>{song.no}. {song.title}</strong>
+          <p className="dim">{song.bpm} BPM · 자동 타임라인 {song.timeline.length} cues</p>
+        </div>
+        <div className="op-summary__card">
+          <span className="eyebrow">BEAT</span>
+          <strong>{beatOn ? `${song.bpm} BPM` : 'OFF'}</strong>
+          <p className="dim">{beatOn ? 'Rhythm pulse active' : 'Manual beat control'}</p>
+        </div>
+      </section>
+
       <div className="op-grid">
         {/* ── 좌: 셋리스트 ── */}
         <aside className="op-col op-col--list" aria-label="셋리스트">
